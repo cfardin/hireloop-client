@@ -7,7 +7,7 @@ function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-[#111113] px-4 py-4">
+    <nav className="sticky top-0 z-50 w-full px-4 py-4">
       <div className="mx-auto container">
         {/* Navbar */}
         <header className="flex h-[66px] items-center justify-between rounded-2xl bg-[#1c1c1e] px-6 md:px-7">

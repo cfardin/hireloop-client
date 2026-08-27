@@ -1,7 +1,12 @@
+import Hero from "@/components/Hero";
+import StatsSection from "@/components/StatsSection";
 
 
 export default function Home() {
   return (
-    <h3>this is home page</h3>
+    <div>
+      {/* <Hero></Hero> */}
+      <StatsSection></StatsSection>
+    </div>
   );
 }
