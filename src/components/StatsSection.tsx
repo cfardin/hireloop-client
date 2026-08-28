@@ -1,4 +1,4 @@
-"use client";
+
 
 import {
   Briefcase,
@@ -38,7 +38,7 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-black  text-white">
+    <section className=" relative overflow-hidden bg-black  text-white">
 
       {/* ==============================
           HERO
@@ -52,7 +52,7 @@ export default function StatsSection() {
       {/* ==============================
           GLOBE BACKGROUND
       =============================== */}
-
+{/* 
       <div
         className="
           pointer-events-none
@@ -68,7 +68,12 @@ export default function StatsSection() {
         style={{
           backgroundImage: "url('/images/globe.png')",
         }}
-      />
+      /> */}
+
+      <div
+  className="pointer-events-none absolute inset-x-0 top-70 bottom-0 z-0 bg-cover bg-center bg-no-repeat"
+  style={{ backgroundImage: "url('/images/globe.png')" }}
+/>
 
 
       {/* Purple glow behind the globe */}
