@@ -2,9 +2,25 @@
 
 import { useState } from "react";
 import { Button, Link } from "@heroui/react";
+import { useSession, signOut  } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 function Navbar() {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const {data:session, isPending} = useSession();
+
+  // console.log(session);
+  const user = session?.user;
+
+  const handleSignOuts = async () => {
+    await signOut({
+      fetchOptions : {
+          onSuccess : () => router.push("/sign-in")
+      }
+    });
+
+  }
 
   return (
     <nav className="sticky top-0 z-50 w-full px-4 py-4">
@@ -50,12 +66,17 @@ function Navbar() {
             {/* Divider */}
             <div className="h-6 w-px bg-white/20" />
 
-            <Link
-              href="/signin"
-              className="text-[15px] font-medium text-[#7065ff] transition-colors hover:text-[#8a80ff]"
-            >
-              Sign In
-            </Link>
+            { 
+              user ? 
+              <>
+              hi, {user?.name}
+              <Button onClick={handleSignOuts} variant="ghost" className="text-[15px] font-medium text-[#7065ff] transition-colors hover:text-[#8a80ff]">
+                Logout
+              </Button>
+              </>
+              : <Link href="/sign-in" className="text-[15px] font-medium text-[#7065ff] transition-colors hover:text-[#8a80ff]">
+                Sign In
+              </Link>}
 
             <Button
               as={Link}

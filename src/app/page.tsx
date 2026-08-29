@@ -1,5 +1,9 @@
+import dns from 'node:dns';
+dns.setServers(['8.8.8.8', '8.8.4.4']);
+
+
+
 import Features from "@/components/Features";
-import Hero from "@/components/Hero";
 import StatsSection from "@/components/StatsSection";
 
 

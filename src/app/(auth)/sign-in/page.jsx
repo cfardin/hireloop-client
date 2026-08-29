@@ -15,29 +15,29 @@ export default function SignInPage() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    //   const handleSubmit = async (e: React.FormEvent) => {
-    //     e.preventDefault();
-    //     setError("");
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError("");
 
-    //     if (!email || !password) {
-    //       setError("All fields are required.");
-    //       return;
-    //     }
+        if (!email || !password) {
+          setError("All fields are required.");
+          return;
+        }
 
-    //     setLoading(true);
-    //     const { error } = await authClient.signIn.email({
-    //       email,
-    //       password,
-    //     });
-    //     setLoading(false);
+        setLoading(true);
+        const { error } = await authClient.signIn.email({
+          email,
+          password,
+        });
+        setLoading(false);
 
-    //     if (error) {
-    //       setError(error.message || "Invalid email or password.");
-    //       return;
-    //     }
+        if (error) {
+          setError(error.message || "Invalid email or password.");
+          return;
+        }
 
-    //     router.push("/dashboard");
-    //   };
+        router.push("/dashboard");
+      };
 
     return (
         <div
@@ -67,7 +67,7 @@ export default function SignInPage() {
                             </div>
                         )}
 
-                        <form className="mt-6 space-y-4">
+                        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                             <div>
                                 <label className="text-xl text-gray-400">
                                     Email
@@ -125,7 +125,7 @@ export default function SignInPage() {
                         </form>
 
                         <p className="mt-6 text-center text-sm text-gray-400">
-                            Don't have an account?{" "}
+                            Do not have an account?{" "}
                             <NextLink
                                 href="/sign-up"
                                 className="text-[#6366f1] hover:underline"
