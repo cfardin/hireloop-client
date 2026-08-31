@@ -1,4 +1,3 @@
-// app/(auth)/sign-up/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -6,6 +5,8 @@ import { useRouter } from "next/navigation";
 import NextLink from "next/link";
 import { Eye, EyeOff } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
+import {Description, Label, Radio, RadioGroup} from "@heroui/react";
+
 
 export default function SignUpPage() {
     const router = useRouter();
@@ -17,6 +18,9 @@ export default function SignUpPage() {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const [loading, setLoading] = useState(false);
+    const [role, setRole] = useState('seeker');
+
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -37,6 +41,8 @@ export default function SignUpPage() {
             name,
             email,
             password,
+            role,
+            callbackURL: "/",
         });
         setLoading(false);
 
@@ -82,6 +88,7 @@ export default function SignUpPage() {
                             onSubmit={handleSubmit}
                             className="mt-6 space-y-4"
                         >
+                            {/* name */}
                             <div>
                                 <label className="text-xl text-gray-400">
                                     Full Name
@@ -95,6 +102,7 @@ export default function SignUpPage() {
                                 />
                             </div>
 
+                            {/* email  */}
                             <div>
                                 <label className="text-xl text-gray-400">
                                     Email
@@ -108,6 +116,7 @@ export default function SignUpPage() {
                                 />
                             </div>
 
+                            {/* password */}
                             <div>
                                 <label className="text-xl text-gray-400">
                                     Password
@@ -139,6 +148,32 @@ export default function SignUpPage() {
                                     </button>
                                 </div>
                             </div>
+
+                            {/* user role */}
+                            <div className="flex flex-col gap-4 items-center py-5">
+                                <Label>Subscription plan</Label>
+                                <RadioGroup defaultValue="seeker" name="role" onChange={value => setRole(value)} orientation="horizontal">
+                                    <Radio value="seeker">
+                                    <Radio.Content>
+                                        <Radio.Control>
+                                        <Radio.Indicator />
+                                        </Radio.Control>
+                                        Job Seeker
+                                    </Radio.Content>
+                                    <Description>For Finding Jobs</Description>
+                                    </Radio>
+                                    <Radio value="recruiter">
+                                    <Radio.Content>
+                                        <Radio.Control>
+                                        <Radio.Indicator />
+                                        </Radio.Control>
+                                        Recruiter
+                                    </Radio.Content>
+                                    <Description>For Hiring</Description>
+                                    </Radio>
+                                </RadioGroup>
+                            </div>
+
 
                             <button
                                 type="submit"
